@@ -1,30 +1,13 @@
 
 import React from 'react';
+import Chart from 'react-apexcharts';
 
 
-import { PieChart, Series, Tooltip } from 'devextreme-react/pie-chart';
+
 import {  ResponsiveContainer } from 'recharts'
 
 
-const CustomerData = [
-	{
-	  country: "China",
-	  amount:215
-  
-	},
-	{
-	  country: "United States",
-	  amount: 716
-	},
-	{
-	  country: "India",
-	  amount:  1002
-	}
-  ]
 
-const contentTemplate = (data) => {
-  return data.argumentText;
-}
 
 function BuyerProfileChart() {
   return (
@@ -33,22 +16,32 @@ function BuyerProfileChart() {
             <span className='flex flex-col text-sm text-gray-400'>Customers that buy products</span>
 		<div className="mt-3 w-full flex-1 text-xs">
     <ResponsiveContainer width="100%" height="100%">
-      <PieChart width={400} height={300} className=' items-center'
-        dataSource={CustomerData}
-        type="doughnut"
-      
-      >
-        <Series 
-          argumentField="country" 
-          valueField="amount"
-        >
-        </Series>
-        <Tooltip
-          enabled={true}
-          contentTemplate={contentTemplate}
-        >
-        </Tooltip>
-      </PieChart>
+    <Chart
+type="donut"
+width={400}
+height={400}
+series={[45,67,89,34,43]}
+options={{
+  labels:['usa','china','India','russia','banglore'],
+
+
+  plotOptions:{
+    pie:{
+      donut:{
+        labels:{
+          Show:true,
+          total:{
+            show:true,
+            fontSize:25,
+            color:'#f90000'
+          }
+        }
+      }
+    }
+  }
+}}
+
+/>
     </ResponsiveContainer>
 	</div>
 	</div>
@@ -57,3 +50,7 @@ function BuyerProfileChart() {
 }
 
 export default BuyerProfileChart;
+
+
+
+
